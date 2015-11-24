@@ -162,6 +162,15 @@
                             s.val(s._validate(val));
                         }
                     );
+
+                    $this.bind(
+                        'refresh',
+                        function () {
+                            var val = {};
+                            val[k] = $this.val();
+                            s.val(s._validate(val), false);
+                        }
+                    );
                 });
                 this.$.find('legend').remove();
             } else {
@@ -174,6 +183,13 @@
                     'change blur',
                     function () {
                         s.val(s._validate(s.o.parse(s.$.val())));
+                    }
+                );
+
+                this.$.bind(
+                    'refresh',
+                    function () {
+                        s.val(s._validate(s.o.parse(s.$.val())), false);
                     }
                 );
 
